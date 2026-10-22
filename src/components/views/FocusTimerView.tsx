@@ -50,13 +50,8 @@ export const FocusTimerView: React.FC<FocusTimerViewProps> = ({
 
   // Switch mode
   const switchMode = (newMode: TimerMode) => {
-    if (isRunning) {
-      if (!window.confirm('Active focus session in progress. Switch and reset?')) {
-        return;
-      }
-      if (mode === 'focus' && onSessionAborted) {
-        onSessionAborted();
-      }
+    if (isRunning && mode === 'focus' && onSessionAborted) {
+      onSessionAborted();
     }
     stopTimer();
     setMode(newMode);
@@ -77,18 +72,10 @@ export const FocusTimerView: React.FC<FocusTimerViewProps> = ({
   };
 
   const resetTimer = () => {
-    if (isRunning && mode === 'focus') {
-      if (window.confirm('Abandon active focus session? This will break your current streak combo!')) {
-        retroAudio.playAlert();
-        stopTimer();
-        setTimeLeft(getDurationForMode(mode));
-        setShowCompletionPrompt(false);
-        if (onSessionAborted) onSessionAborted();
-        return;
-      }
-      return;
-    }
     retroAudio.playAlert();
+    if (isRunning && mode === 'focus' && onSessionAborted) {
+      onSessionAborted();
+    }
     stopTimer();
     setTimeLeft(getDurationForMode(mode));
     setShowCompletionPrompt(false);

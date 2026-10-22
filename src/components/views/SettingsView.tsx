@@ -105,9 +105,20 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </p>
         </div>
 
-        <PixelButton variant="primary" onClick={handleSavePreferences}>
-          SAVE ALL SETTINGS
-        </PixelButton>
+        <div className="flex items-center gap-2">
+          <a
+            href="/api/download"
+            download="pixelquest-task-manager.zip"
+            className="inline-flex items-center gap-1.5 px-3 py-2 text-xs font-pixel bg-[#0c202d] text-[#38bdf8] border-2 border-[#38bdf8] hover:bg-[#38bdf8] hover:text-[#0b0e14] transition cursor-pointer shadow-[2px_2px_0_0_#06090e]"
+            title="Download full project source code as a ZIP archive"
+          >
+            <span>📦</span>
+            <span>DOWNLOAD ZIP</span>
+          </a>
+          <PixelButton variant="primary" onClick={handleSavePreferences}>
+            SAVE ALL SETTINGS
+          </PixelButton>
+        </div>
       </div>
 
       {/* 1. Supabase Cloud Sync & Durable Queue */}
@@ -456,14 +467,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               size="sm"
               onClick={() => {
                 retroAudio.playAlert();
-                if (
-                  window.confirm(
-                    'WARNING: Reset all quests, achievements, and stats back to starter template? This cannot be undone.'
-                  )
-                ) {
-                  onResetData();
-                  onShowToast('Local quest data reset to factory template.', 'alert');
-                }
+                onResetData();
+                onShowToast('Local quest data reset to factory template.', 'alert');
               }}
             >
               PURGE & RESET TO DEFAULTS

@@ -26,6 +26,19 @@ app.get('/api/health', (_req: Request, res: Response) => {
   });
 });
 
+// Download Project Zip Archive endpoint
+app.get('/api/download', (_req: Request, res: Response) => {
+  const zipPath = path.resolve(__dirname, 'pixelquest-task-manager.zip');
+  res.download(zipPath, 'pixelquest-task-manager.zip', (err) => {
+    if (err) {
+      console.error('Download error:', err);
+      if (!res.headersSent) {
+        res.status(500).json({ error: 'Failed to download zip archive' });
+      }
+    }
+  });
+});
+
 // Grounded Task-Aware AI Assistant
 app.post('/api/assistant', async (req: Request, res: Response) => {
   try {

@@ -117,9 +117,7 @@ export const TasksView: React.FC<TasksViewProps> = ({
               size="sm"
               onClick={() => {
                 retroAudio.playAlert();
-                if (window.confirm(`Clear all ${completedCount} completed quests from active log?`)) {
-                  onClearCompleted();
-                }
+                onClearCompleted();
               }}
             >
               PURGE CLEARED ({completedCount})

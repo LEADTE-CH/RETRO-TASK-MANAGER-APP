@@ -750,6 +750,15 @@ export default function App() {
           <span>OFFLINE-FIRST DURABILITY ENGINE</span>
           <span>·</span>
           <a
+            href="/api/download"
+            download="pixelquest-task-manager.zip"
+            className="text-[#39ff14] hover:underline flex items-center gap-1 font-bold"
+          >
+            <span>📦</span>
+            <span>DOWNLOAD ZIP</span>
+          </a>
+          <span>·</span>
+          <a
             href="#settings"
             onClick={(e) => {
               e.preventDefault();

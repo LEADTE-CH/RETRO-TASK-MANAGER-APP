@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ViewTab, UserStats, AuthUser } from '../../types';
 import { SyncEngineStatus } from '../../db/supabase';
 import { retroAudio } from '../../utils/audio';
@@ -28,6 +28,23 @@ export const PixelHeader: React.FC<PixelHeaderProps> = ({
   onToggleSound,
   onOpenAuth,
 }) => {
+  const [clockTime, setClockTime] = useState<string>('');
+
+  useEffect(() => {
+    const updateClock = () => {
+      setClockTime(
+        new Date().toLocaleTimeString([], {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+        })
+      );
+    };
+    updateClock();
+    const interval = setInterval(updateClock, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const tabs: { id: ViewTab; label: string; shortcut: string; icon: string }[] = [
     { id: 'dashboard', label: 'RADAR', shortcut: '1', icon: '⚡' },
     { id: 'tasks', label: 'QUESTS', shortcut: '2', icon: '⚔️' },
@@ -52,16 +69,23 @@ export const PixelHeader: React.FC<PixelHeaderProps> = ({
       <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2.5 flex flex-wrap items-center justify-between gap-3 text-xs">
         {/* Brand / Logo */}
         <div className="flex items-center gap-2">
-          <div className="w-7 h-7 bg-[#1e3a24] border-2 border-[#39ff14] flex items-center justify-center text-sm shadow-[2px_2px_0_0_#06090e]">
+          <div className="w-7 h-7 bg-[#1e3a24] border-2 border-[#39ff14] flex items-center justify-center text-sm shadow-[2px_2px_0_0_#06090e] animate-pixel-bounce">
             👾
           </div>
           <div className="flex flex-col">
-            <span className="font-pixel text-xs sm:text-sm text-[#ede4ce] tracking-tight">
-              PIXEL<span className="text-[#39ff14]">QUEST</span>
-            </span>
-            <span className="text-[9px] font-mono text-[#64748b] hidden sm:inline">
-              RETRO TASK CONSOLE v1.0
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="font-pixel text-xs sm:text-sm text-[#ede4ce] tracking-tight">
+                PIXEL<span className="text-[#39ff14]">QUEST</span>
+              </span>
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#39ff14] opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#39ff14]"></span>
+              </span>
+            </div>
+            <div className="flex items-center gap-2 text-[9px] font-mono text-[#64748b]">
+              <span className="hidden sm:inline">CONSOLE v1.0</span>
+              <span className="text-[#38bdf8] font-bold">[{clockTime || 'LIVE'}]</span>
+            </div>
           </div>
         </div>
 
