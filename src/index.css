@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-pixel: 'Press Start 2P', monospace;
+    --font-vt: 'VT323', monospace;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background-color: #0b0e14;
+    color: #ede4ce;
+    font-family: 'JetBrains Mono', monospace;
+    image-rendering: pixelated;
+  }
+}
+
+/* Pixel Art Fonts */
+.font-pixel {
+  font-family: 'Press Start 2P', monospace;
+  letter-spacing: -0.05em;
+}
+
+.font-vt {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.05em;
+}
+
+.font-code {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* 8-bit Stepped Pixel Borders */
+.pixel-border {
+  border: 3px solid #222d3f;
+  box-shadow: 
+    3px 3px 0 0 #07090d,
+    inset 2px 2px 0 0 rgba(255, 255, 255, 0.06),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.pixel-border-green {
+  border: 3px solid #39ff14;
+  box-shadow: 
+    3px 3px 0 0 #0b0e14,
+    0 0 10px rgba(57, 255, 20, 0.25);
+}
+
+.pixel-border-amber {
+  border: 3px solid #f59e0b;
+  box-shadow: 
+    3px 3px 0 0 #0b0e14,
+    0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.pixel-border-cyan {
+  border: 3px solid #38bdf8;
+  box-shadow: 
+    3px 3px 0 0 #0b0e14,
+    0 0 10px rgba(56, 189, 248, 0.25);
+}
+
+.pixel-border-red {
+  border: 3px solid #ef4444;
+  box-shadow: 
+    3px 3px 0 0 #0b0e14,
+    0 0 10px rgba(239, 68, 68, 0.25);
+}
+
+/* Pixel Button States */
+.pixel-btn {
+  position: relative;
+  border: 2px solid #3d4f6c;
+  background-color: #1a2234;
+  box-shadow: 
+    3px 3px 0 0 #06090e,
+    inset 1px 1px 0 0 rgba(255, 255, 255, 0.15),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+  transition: transform 0.05s ease, box-shadow 0.05s ease, background-color 0.1s ease;
+  user-select: none;
+}
+
+.pixel-btn:hover {
+  filter: brightness(1.15);
+}
+
+.pixel-btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 
+    1px 1px 0 0 #06090e,
+    inset 2px 2px 0 0 rgba(0, 0, 0, 0.6);
+}
+
+.pixel-btn-primary {
+  border: 2px solid #48c774;
+  background-color: #1e3a24;
+  color: #39ff14;
+  box-shadow: 
+    3px 3px 0 0 #06090e,
+    inset 1px 1px 0 0 rgba(57, 255, 20, 0.3),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+}
+
+.pixel-btn-amber {
+  border: 2px solid #f59e0b;
+  background-color: #3d2605;
+  color: #fbbf24;
+  box-shadow: 
+    3px 3px 0 0 #06090e,
+    inset 1px 1px 0 0 rgba(245, 158, 11, 0.3),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+}
+
+.pixel-btn-cyan {
+  border: 2px solid #38bdf8;
+  background-color: #0c2b42;
+  color: #7dd3fc;
+  box-shadow: 
+    3px 3px 0 0 #06090e,
+    inset 1px 1px 0 0 rgba(56, 189, 248, 0.3),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+}
+
+.pixel-btn-danger {
+  border: 2px solid #ef4444;
+  background-color: #3a1318;
+  color: #fca5a5;
+  box-shadow: 
+    3px 3px 0 0 #06090e,
+    inset 1px 1px 0 0 rgba(239, 68, 68, 0.3),
+    inset -2px -2px 0 0 rgba(0, 0, 0, 0.4);
+}
+
+/* CRT scanlines effect */
+.crt-scanlines {
+  background: linear-gradient(
+    rgba(18, 24, 36, 0) 50%, 
+    rgba(0, 0, 0, 0.28) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+}
+
+/* Retro Pixel Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0e14;
+  border-left: 2px solid #1a2234;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a374f;
+  border: 2px solid #0b0e14;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #39ff14;
+}
+
+/* Custom Pixel Checkbox checked mark */
+.pixel-checked {
+  position: relative;
+}
+.pixel-checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #0b0e14;
+  font-weight: 900;
+  font-size: 11px;
+}
+
+/* Pixel HUD glowing indicators */
+@keyframes retro-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.animate-retro-pulse {
+  animation: retro-pulse 1.4s steps(2, start) infinite;
+}
+
+@keyframes pixel-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.animate-pixel-bounce {
+  animation: pixel-bounce 1s steps(2, start) infinite;
+}

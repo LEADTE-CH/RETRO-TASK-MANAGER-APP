@@ -1,0 +1,6 @@
+{
+  "name": "PixelQuest - Retro Pixel Task Manager",
+  "description": "Retro pixel-art productivity console featuring Eisenhower matrix, Pomodoro focus sessions, RPG leveling & badges, offline-first durable sync queue, voice assistant, and Supabase integration.",
+  "requestFramePermissions": ["notifications", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
